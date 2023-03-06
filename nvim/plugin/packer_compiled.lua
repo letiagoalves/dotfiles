@@ -154,6 +154,11 @@ _G.packer_plugins = {
     path = "/Users/tiagoalves/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/tiagoalves/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/tiagoalves/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -168,10 +173,25 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/tiagoalves/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["trouble.nvim"] = {
+    config = { "\27LJ\2\nÆ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\nsigns\1\0\4\nerror\nerror\thint\thint\fwarning\twarn\16information\tinfo\1\0\5\14fold_open\6v\16fold_closed\6>\17indent_lines\1\25use_diagnostic_signs\1\nicons\1\nsetup\ftrouble\frequire\0" },
+    loaded = true,
+    path = "/Users/tiagoalves/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/Users/tiagoalves/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\nÆ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\nsigns\1\0\4\nerror\nerror\thint\thint\fwarning\twarn\16information\tinfo\1\0\5\14fold_open\6v\16fold_closed\6>\17indent_lines\1\25use_diagnostic_signs\1\nicons\1\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
