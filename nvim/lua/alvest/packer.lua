@@ -1,4 +1,4 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+--"; ";This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
@@ -22,10 +22,7 @@ return require('packer').startup(function(use)
   --         end
   -- })
 
-  use({ 'tanvirtin/monokai.nvim' })
-
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-  use('theprimeagen/harpoon')
   use('tpope/vim-fugitive')
 
   use {
@@ -76,5 +73,35 @@ use {
         }
     end
 }
+
+use('christoomey/vim-tmux-navigator')
+use('numToStr/Comment.nvim')
+use('nvim-tree/nvim-tree.lua')
+
+use {
+    "ggandor/leap.nvim",
+    config = function() require("leap").set_default_keymaps() end
+}
+
+use { "catppuccin/nvim", as = "catppuccin" }
+use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+}
+use "rafamadriz/friendly-snippets"
+
+use 'nvim-tree/nvim-web-devicons'
+use({
+  "utilyre/barbecue.nvim",
+  tag = "*",
+  requires = {
+    "SmiteshP/nvim-navic",
+    "nvim-tree/nvim-web-devicons", -- optional dependency
+  },
+    after = "nvim-web-devicons", -- keep this if you're using NvChad
+  config = function()
+    require("barbecue").setup()
+  end,
+})
 
 end)
