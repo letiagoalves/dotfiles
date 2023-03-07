@@ -1,1 +1,1 @@
-require('monokai').setup { palette = require('monokai').pro }
+-- require('monokai').setup { palette = require('monokai').pro }
