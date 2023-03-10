@@ -46,6 +46,8 @@ return require("packer").startup(function(use)
       -- Snippets
       { "L3MON4D3/LuaSnip" },          -- Required
       { "rafamadriz/friendly-snippets" }, -- Optional
+      { "hrsh7th/vim-vsnip" },
+      { "hrsh7th/vim-vsnip-integ" },
 
       -- Formatting
       { "neovim/nvim-lspconfig" },
@@ -112,4 +114,12 @@ return require("packer").startup(function(use)
   })
   use("kkharji/sqlite.lua")
   use({ "smartpde/telescope-recent-files" })
+
+  use({
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    tag = "v1.2.1",
+    -- install jsregexp (optional!:).
+    run = "make install_jsregexp",
+  })
 end)
