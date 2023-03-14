@@ -44,12 +44,12 @@ lsp.setup_nvim_cmp({
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
-  sign_icons = {
-    error = "E",
-    warn = "W",
-    hint = "H",
-    info = "I",
-  },
+  -- sign_icons = {
+  --   error = "E",
+  --   warn = "W",
+  --   hint = "H",
+  --   info = "I",
+  -- },
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -73,9 +73,9 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "]d", function()
     vim.diagnostic.goto_prev()
   end, opts)
-  vim.keymap.set("n", "<leader>vca", function()
-    vim.lsp.buf.code_action()
-  end, opts)
+  -- vim.keymap.set("n", "<leader>vca", function()
+  --   -- vim.lsp.buf.code_action()
+  -- end, opts)
   vim.keymap.set("n", "<leader>vrr", function()
     vim.lsp.buf.references()
   end, opts)
@@ -110,7 +110,8 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.prettier_eslint,
-    null_ls.builtins.diagnostics.eslint,
+    -- null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.diagnostics.tsc,
     null_ls.builtins.code_actions.gitsigns,
   },
   on_attach = function(client, bufnr)
@@ -148,10 +149,6 @@ null_ls.setup({
   --
 })
 
-vim.diagnostic.config({
-  virtual_text = false,
-})
-
 lsp.setup({
   tsserver = {
     cmd = "tsserver",
@@ -161,4 +158,29 @@ lsp.setup({
       client.server_capabilities.documentFormattingProvider = false
     end,
   },
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
+})
+
+-- https://github.com/VonHeikemen/lsp-zero.nvim/issues/65
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "⋇", -- Could be '●', '▎', 'x', ■
+    spacing = 4,
+    severity = {
+      min = vim.diagnostic.severity.ERROR,
+    },
+  },
+  -- underline = {
+  --   prefix = "H",
+  --   severity = {
+  --     min = vim.diagnostic.severity.ERROR,
+  --   },
+  -- },
+  underline = false,
 })
