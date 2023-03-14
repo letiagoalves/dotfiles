@@ -5,6 +5,7 @@ return require("packer").startup(function(use)
   -- Packer can manage itself
   use("wbthomason/packer.nvim")
 
+  use("cljoly/telescope-repo.nvim")
   use({
     "nvim-telescope/telescope.nvim",
     tag = "0.1.1",
@@ -22,6 +23,21 @@ return require("packer").startup(function(use)
   -- })
 
   use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
+  -- Auto pairs
+  use({
+    "windwp/nvim-autopairs",
+    wants = "nvim-treesitter",
+    module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
+  })
+  use({
+    "windwp/nvim-ts-autotag",
+    wants = "nvim-treesitter",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-ts-autotag").setup({ enable = true })
+    end,
+  })
+
   use("tpope/vim-fugitive")
   use("lewis6991/gitsigns.nvim")
 
@@ -55,31 +71,55 @@ return require("packer").startup(function(use)
     },
   })
 
+  -- use({
+  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  --   config = function()
+  --     require("lsp_lines").setup()
+  --   end,
+  -- })
+
   use({ "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" })
   -- Lua
   use({
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",
     config = function()
-      require("trouble").setup({
-        icons = false,
-        fold_open = "v",  -- icon used for open folds
-        fold_closed = ">", -- icon used for closed folds
-        indent_lines = false, -- add an indent guide below the fold icons
-        signs = {
-          -- icons / text used for a diagnostic
-          error = "error",
-          warning = "warn",
-          hint = "hint",
-          information = "info",
-        },
-        use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      })
+      require("trouble").setup()
+      -- require("trouble").setup({
+      -- icons = false,
+      --   fold_open = "v", -- icon used for open folds
+      --   fold_closed = ">", -- icon used for closed folds
+      --   indent_lines = true, -- add an indent guide below the fold icons
+      --   mode = "workspace_diagnostics",
+      -- signs = {
+      --   -- icons / text used for a diagnostic
+      --   error = "A",
+      --   warning = "warn",
+      --   hint = "hint",
+      --   information = "info",
+      -- },
+      -- use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
+      -- sadsad
+      --   -- your configuration comes here
+      --   -- or leave it empty to use the default settings
+      --   -- refer to the configuration section below
+      -- })
+      --
+      -- local signs = {
+      --   Error = " ",
+      --   Warn = " ",
+      --   Hint = " ",
+      --   Info = " ",
+      -- }
+      --
+      -- for type, icon in pairs(signs) do
+      --   local hl = "DiagnosticSign" .. type
+      --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      -- end
     end,
   })
+
+  -- sadasd
 
   use("christoomey/vim-tmux-navigator")
   use("numToStr/Comment.nvim")
@@ -122,4 +162,23 @@ return require("packer").startup(function(use)
     -- install jsregexp (optional!:).
     run = "make install_jsregexp",
   })
+
+  use({
+    "glepnir/dashboard-nvim",
+    event = "VimEnter",
+    config = function()
+      require("dashboard").setup({
+        theme = "hyper",
+      })
+    end,
+    requires = { "nvim-tree/nvim-web-devicons" },
+  })
+
+  use({
+    "olimorris/persisted.nvim",
+    config = function()
+      require("persisted").setup()
+    end,
+  })
+  use("simrat39/symbols-outline.nvim")
 end)

@@ -13,7 +13,6 @@ local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
 
 local telescope = require("telescope")
-telescope.load_extension("recent_files")
 
 telescope.setup({
   defaults = {
@@ -26,6 +25,13 @@ telescope.setup({
   extensions = {
     recent_files = {
       only_cwd = true,
+    },
+    repo = {
+      list = {
+        search_dirs = {
+          "~/workspace",
+        },
+      },
     },
     --   frecency = {
     --     db_root = "/Users/alvest/workspace/.telescopedb",
@@ -42,6 +48,10 @@ telescope.setup({
     --   },
   },
 })
+
+telescope.load_extension("recent_files")
+telescope.load_extension("persisted")
+telescope.load_extension("repo")
 
 vim.api.nvim_set_keymap(
   "n",
