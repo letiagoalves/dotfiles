@@ -54,3 +54,9 @@ end)
 --   "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
 --   { noremap = true, silent = true }
 -- )
+
+vim.keymap.set("n", "<leader>rn", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true })
+
+vim.api.nvim_set_keymap("n", "<leader>vca", "<Cmd>CodeActionMenu<CR>", { noremap = true, silent = true })

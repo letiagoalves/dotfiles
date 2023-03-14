@@ -1,1 +1,2 @@
-// testing config
+// testing configpla
+console.log("test");
