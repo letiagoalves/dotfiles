@@ -1,0 +1,16 @@
+export PATH=/Users/tiagoalves/workspace/development/flutter/bin:$PATH
+export PATH=/Users/tiagoalves/Library/Android/sdk/platform-tools:$PATH
+export PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
+export PATH=/Users/tiagoalves/.rbenv/shims:$PATH
+export PATH=/Users/tiagoalves/.rbenv/bin:$PATH
+export PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
+export PATH=/Users/tiagoalves/Library/Android/sdk/platform-tools:$PATH
+export PATH=/Users/tiagoalves/workspace/development/flutter/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/bin:/bin:$PATH
+export PATH=/usr/sbin:/sbin:$PATH
+export PATH=/usr/local/share/dotnet:$PATH
+export PATH=/Library/Apple/usr/bin:$PATH
+export PATH=/Library/Frameworks/Mono.framework/Versions/Current/Commands:$PATH
+export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
+export PATH=~/Library/Android/sdk/emulator/:$PATH

@@ -1,2 +1,2 @@
-// testing configpla
-console.log("test");
+// testing config
+console.log("custom snippets working");

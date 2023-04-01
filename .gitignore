@@ -1,8 +1,2 @@
 .DS_Store
-configstore
-flipper
-flutter
-iterm2
-yarn
-
-bob
+nvim/plugin/packer_compiled.lua

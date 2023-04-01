@@ -41,4 +41,4 @@ cmp.setup({
 })
 
 -- load snippets from ~/my-cool-snippets
-require("luasnip.loaders.from_vscode").load({ paths = { "~/my-cool-snippets" } })
+require("luasnip.loaders.from_vscode").load({ paths = { "~/my-cool-snippets/typescript" } })
