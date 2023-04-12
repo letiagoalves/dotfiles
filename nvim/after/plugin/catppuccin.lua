@@ -37,11 +37,11 @@ require("catppuccin").setup({
     --   mantle = "#191919",
     --   crust = "#474747",
     -- },
-    mocha = {
-      base = "#161622",
-      mantle = "#000000",
-      crust = "#CFFDE1",
-    },
+    -- mocha = {
+    --   base = "#161622",
+    --   mantle = "#000000",
+    --   crust = "#CFFDE1",
+    -- },
   },
   custom_highlights = {},
   integrations = {

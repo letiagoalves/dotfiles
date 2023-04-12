@@ -38,7 +38,6 @@ vim.keymap.set("n", "<leader>b", function()
   tree_api.tree.toggle({
     find_file = true,
   })
-  -- print(tree)
 end)
 
 -- recent files
@@ -59,4 +58,5 @@ vim.keymap.set("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
 
-vim.api.nvim_set_keymap("n", "<leader>vca", "<Cmd>CodeActionMenu<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ca", "<Cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
+

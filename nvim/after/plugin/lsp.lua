@@ -121,14 +121,13 @@ null_ls.setup({
       vim.keymap.set("n", "<Leader>f", function()
         vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf(), timeout_ms = 4000 })
       end, { buffer = bufnr, desc = "[lsp] format" })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 4000 })
-          -- vim.lsp.buf.formatting_sync()
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   group = augroup,
+      --   buffer = bufnr,
+      --   callback = function()
+      --     vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 4000 })
+      --   end,
+      -- })
     end
   end,
   -- on_attach = function(client, bufnr)
