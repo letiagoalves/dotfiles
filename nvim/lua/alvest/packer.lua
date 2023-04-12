@@ -14,15 +14,6 @@ return require("packer").startup(function(use)
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }),
   })
 
-  -- use({
-  --         'rose-pine/neovim',
-  --         as = 'rose-pine',
-  --         config = function()
-  --       	  require("rose-pine").setup()
-  --       	  vim.cmd('colorscheme rose-pine')
-  --         end
-  -- })
-
   use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
   -- Auto pairs
   use({
@@ -30,6 +21,16 @@ return require("packer").startup(function(use)
     wants = "nvim-treesitter",
     module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
   })
+  use({
+    "utilyre/sentiment.nvim",
+    tag = "*",
+    config = function()
+      require("sentiment").setup({
+        -- config
+      })
+    end,
+  })
+  use("fedepujol/move.nvim")
   use({
     "windwp/nvim-ts-autotag",
     wants = "nvim-treesitter",
@@ -41,7 +42,14 @@ return require("packer").startup(function(use)
 
   use("tpope/vim-fugitive")
   use("lewis6991/gitsigns.nvim")
-
+  use({
+    "tummetott/unimpaired.nvim",
+    config = function()
+      require("unimpaired").setup({
+        -- add any options here or leave empty
+      })
+    end,
+  })
   -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
   use({
     "VonHeikemen/lsp-zero.nvim",
@@ -70,6 +78,13 @@ return require("packer").startup(function(use)
       { "neovim/nvim-lspconfig" },
       { "jose-elias-alvarez/null-ls.nvim" },
     },
+  })
+
+  use({
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup()
+    end,
   })
 
   use({
@@ -133,14 +148,6 @@ return require("packer").startup(function(use)
   use("numToStr/Comment.nvim")
   use("nvim-tree/nvim-tree.lua")
   use({
-    "weilbith/nvim-code-action-menu",
-    cmd = "CodeActionMenu",
-    config = function()
-      require("code_action_menu").setup()
-    end,
-  })
-
-  use({
     "ggandor/leap.nvim",
     config = function()
       require("leap").set_default_keymaps()
@@ -167,7 +174,7 @@ return require("packer").startup(function(use)
       require("barbecue").setup()
     end,
   })
-  use("kkharji/sqlite.lua")
+  -- use("kkharji/sqlite.lua")
   use({ "smartpde/telescope-recent-files" })
 
   use({
@@ -199,5 +206,25 @@ return require("packer").startup(function(use)
   use({
     "kosayoda/nvim-lightbulb",
     requires = "antoinemadec/FixCursorHold.nvim",
+  })
+  use("tenxsoydev/karen-yank.nvim")
+  use({
+    "SmiteshP/nvim-navbuddy",
+    requires = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim",
+    },
+  })
+
+  -- Legendary
+  use({ "stevearc/dressing.nvim" })
+  use({
+    "mrjones2014/legendary.nvim",
+    tag = "v2.9.1",
+    requires = { "stevearc/dressing.nvim" },
+    config = function()
+      require("legendary").setup(require("alvest.legendary-after"))
+    end,
   })
 end)
