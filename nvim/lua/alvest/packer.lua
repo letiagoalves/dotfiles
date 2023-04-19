@@ -1,4 +1,4 @@
--- Only required if you have packer configured as `opt`
+-- Only required if you have packer configured as `opt`:wbthomason
 -- vim.cmd([[packadd packer.nvim]])
 
 return require("packer").startup(function(use)
@@ -15,21 +15,12 @@ return require("packer").startup(function(use)
   })
 
   use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-  -- Auto pairs
   use({
     "windwp/nvim-autopairs",
     wants = "nvim-treesitter",
     module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
   })
-  use({
-    "utilyre/sentiment.nvim",
-    tag = "*",
-    config = function()
-      require("sentiment").setup({
-        -- config
-      })
-    end,
-  })
+  use("lukas-reineke/indent-blankline.nvim")
   use("fedepujol/move.nvim")
   use({
     "windwp/nvim-ts-autotag",
@@ -40,16 +31,50 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use("tpope/vim-fugitive")
-  use("lewis6991/gitsigns.nvim")
+  use({ "mg979/vim-visual-multi" })
+
   use({
-    "tummetott/unimpaired.nvim",
+    "folke/noice.nvim",
     config = function()
-      require("unimpaired").setup({
-        -- add any options here or leave empty
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+                ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                ["vim.lsp.util.stylize_markdown"] = true,
+                ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true,    -- use a classic bottom cmdline for search
+          command_palette = true,  -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false,      -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,  -- add a border to hover docs and signature help
+        },
       })
     end,
+    requires = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    },
   })
+
+  use("tpope/vim-fugitive")
+  use("lewis6991/gitsigns.nvim")
+  -- use({
+  --   "tummetott/unimpaired.nvim",
+  --   config = function()
+  --     require("unimpaired").setup({
+  --       -- add any options here or leave empty
+  --     })
+  --   end,
+  -- })
   -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
   use({
     "VonHeikemen/lsp-zero.nvim",
@@ -94,13 +119,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- use({
-  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  --   config = function()
-  --     require("lsp_lines").setup()
-  --   end,
-  -- })
-
   use({ "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" })
   -- Lua
   use({
@@ -142,8 +160,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- sadasd
-
   use("christoomey/vim-tmux-navigator")
   use("numToStr/Comment.nvim")
   use("nvim-tree/nvim-tree.lua")
@@ -174,12 +190,10 @@ return require("packer").startup(function(use)
       require("barbecue").setup()
     end,
   })
-  -- use("kkharji/sqlite.lua")
   use({ "smartpde/telescope-recent-files" })
 
   use({
     "L3MON4D3/LuaSnip",
-    -- follow latest release.
     tag = "v1.2.1",
     -- install jsregexp (optional!:).
     run = "make install_jsregexp",
@@ -225,6 +239,18 @@ return require("packer").startup(function(use)
     requires = { "stevearc/dressing.nvim" },
     config = function()
       require("legendary").setup(require("alvest.legendary-after"))
+    end,
+  })
+
+  use({
+    "uga-rosa/ccc.nvim",
+    config = function()
+      require("ccc").setup({
+        highlighter = {
+          auto_enable = true,
+          lsp = true,
+        }
+      })
     end,
   })
 end)
