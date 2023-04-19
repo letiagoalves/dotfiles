@@ -3,15 +3,27 @@ local M = {
   auto_register_which_key = true,
   keymaps = {
     {
-      "<A-k>",
+      "<Up>",
       ":MoveLine -1<CR>",
       description = "Line: move up (move.nvim)",
       opts = { noremap = true },
     },
     {
-      "<A-j>",
+      "<Down>",
       ":MoveLine 1<CR>",
       description = "Line: move down (move.nvim)",
+      opts = { noremap = true },
+    },
+    {
+      "<C-h>",
+      { i = "<C-o>_" },
+      description = "Line: go to beggining of line",
+      opts = { noremap = true },
+    },
+    {
+      "<C-l>",
+      { i = "<C-o>$" },
+      description = "Line: go to end of line",
       opts = { noremap = true },
     },
     -- map keys to a command
@@ -50,11 +62,11 @@ local M = {
   commands = {
     -- easily create user commands
     {
-      ":SayHello",
+      ":MyRepos",
       function()
-        print("hello world!")
+        require("telescope").extensions.repo.list({})
       end,
-      description = "Say hello as a command",
+      description = "View repos with Telescope",
     },
     {
       -- groups with same itemgroup will be merged
@@ -86,15 +98,15 @@ local M = {
       },
     },
   },
-  autocmds = {
-    -- Create autocmds and augroups
-    { "BufWritePre", vim.lsp.buf.format, description = "Format on save" },
-    {
-      name = "MyAugroup",
-      clear = true,
-      -- autocmds here
-    },
-  },
+  -- autocmds = {
+  --   -- Create autocmds and augroups
+  --   { "BufWritePre", vim.lsp.buf.format, description = "Format on save" },
+  --   {
+  --     name = "MyAugroup",
+  --     clear = true,
+  --     -- autocmds here
+  --   },
+  -- },
   -- load extensions
   extensions = {
     -- load keymaps and commands from nvim-tree.lua

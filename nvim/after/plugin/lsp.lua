@@ -28,6 +28,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 
 cmp_mappings["<Tab>"] = nil
 cmp_mappings["<S-Tab>"] = nil
+cmp_mappings["<C-e>"] = nil
 
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
@@ -82,9 +83,9 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", function()
     vim.lsp.buf.rename()
   end, opts)
-  vim.keymap.set("i", "<C-h>", function()
-    vim.lsp.buf.signature_help()
-  end, opts)
+  -- vim.keymap.set("i", "<C-h>", function()
+  --   vim.lsp.buf.signature_help()
+  -- end, opts)
 end)
 
 -- https://git.sr.ht/~whynothugo/dotfiles/tree/main/item/home/.config/nvim/lua/lsp.lua
@@ -118,7 +119,7 @@ null_ls.setup({
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
-      vim.keymap.set("n", "<Leader>f", function()
+      vim.keymap.set("n", "<Leader>ff", function()
         vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf(), timeout_ms = 4000 })
       end, { buffer = bufnr, desc = "[lsp] format" })
       -- vim.api.nvim_create_autocmd("BufWritePre", {
