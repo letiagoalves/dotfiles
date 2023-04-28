@@ -13,6 +13,10 @@ return require("packer").startup(function(use)
     requires = { { "nvim-lua/plenary.nvim" } },
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }),
   })
+  use({
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  })
 
   use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
   use({
@@ -166,7 +170,29 @@ return require("packer").startup(function(use)
   use({
     "ggandor/leap.nvim",
     config = function()
-      require("leap").set_default_keymaps()
+      for _, _4_ in ipairs({
+        { "n", "s",  "<Plug>(leap-forward)" },
+        { "n", "S",  "<Plug>(leap-backward)" },
+        { "x", "s",  "<Plug>(leap-forward)" },
+        { "x", "S",  "<Plug>(leap-backward)" },
+        { "o", "z",  "<Plug>(leap-forward)" },
+        { "o", "Z",  "<Plug>(leap-backward)" },
+        { "o", "x",  "<Plug>(leap-forward-x)" },
+        { "o", "X",  "<Plug>(leap-backward-x)" },
+        -- { "n", "gs", "<Plug>(leap-cross-window)" },
+        -- { "x", "gs", "<Plug>(leap-cross-window)" },
+        -- { "o", "gs", "<Plug>(leap-cross-window)" },
+      }) do
+        local _each_5_ = _4_
+        local mode = _each_5_[1]
+        local lhs = _each_5_[2]
+        local rhs = _each_5_[3]
+        if force_3f or ((vim.fn.mapcheck(lhs, mode) == "") and (vim.fn.hasmapto(rhs, mode) == 0)) then
+          vim.keymap.set(mode, lhs, rhs, { silent = true })
+        else
+        end
+      end
+      -- require("leap").set_default_keymaps()
     end,
   })
 
@@ -249,7 +275,40 @@ return require("packer").startup(function(use)
         highlighter = {
           auto_enable = true,
           lsp = true,
-        }
+        },
+      })
+    end,
+  })
+
+  use({
+    "echasnovski/mini.nvim",
+    branch = "stable",
+    config = function()
+      require("mini.surround").setup({
+        mappings = {
+          add = "gsa",  -- Add surrounding in Normal and Visual modes
+          delete = "gsd", -- Delete surrounding
+          find = "gsf", -- Find surrounding (to the right)
+          find_left = "gsF", -- Find surrounding (to the left)
+          highlight = "gsh", -- Highlight surrounding
+          replace = "gsr", -- Replace surrounding
+          -- update_n_lines = "sn", -- Update `n_lines`
+          -- suffix_last = "l", -- Suffix to search with "prev" method
+          -- suffix_next = "n", -- Suffix to search with "next" method
+        },
+      })
+    end,
+  })
+
+  use({
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
       })
     end,
   })

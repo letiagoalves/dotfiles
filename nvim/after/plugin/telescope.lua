@@ -60,6 +60,7 @@ telescope.load_extension("recent_files")
 telescope.load_extension("persisted")
 telescope.load_extension("repo")
 telescope.load_extension("fzf")
+telescope.load_extension "file_browser"
 
 vim.api.nvim_set_keymap(
   "n",

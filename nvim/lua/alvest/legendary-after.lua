@@ -3,6 +3,20 @@ local M = {
   auto_register_which_key = true,
   keymaps = {
     {
+      "<leader>fb",
+      function()
+        require("telescope").extensions.file_browser.file_browser()
+      end,
+      description = "Open Telescope file browser",
+    },
+    {
+      "<leader>fc",
+      function()
+        require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", select_buffer = true })
+      end,
+      description = "Reveal current file",
+    },
+    {
       "<Up>",
       ":MoveLine -1<CR>",
       description = "Line: move up (move.nvim)",
