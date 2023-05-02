@@ -41,7 +41,7 @@ local M = {
       opts = { noremap = true },
     },
     -- map keys to a command
-    { "<leader>ff", ":Telescope find_files", description = "Find files" },
+    -- { "<leader>ff", ":Telescope find_files", description = "Find files" },
     -- map keys to a function
     {
       "<A-m>",
@@ -51,7 +51,7 @@ local M = {
       description = "Say hello",
     },
     -- Set options used during keymap creation
-    { "<leader>s",  ":SomeCommand<CR>",      description = "Non-silent keymap", opts = { silent = true } },
+    { "<leader>s", ":SomeCommand<CR>",               description = "Non-silent keymap", opts = { silent = true } },
     -- create keymaps with different implementations per-mode
     {
       "<leader>c",
@@ -112,16 +112,6 @@ local M = {
       },
     },
   },
-  -- autocmds = {
-  --   -- Create autocmds and augroups
-  --   { "BufWritePre", vim.lsp.buf.format, description = "Format on save" },
-  --   {
-  --     name = "MyAugroup",
-  --     clear = true,
-  --     -- autocmds here
-  --   },
-  -- },
-  -- load extensions
   extensions = {
     -- load keymaps and commands from nvim-tree.lua
     nvim_tree = true,

@@ -1,6 +1,3 @@
--- Only required if you have packer configured as `opt`:wbthomason
--- vim.cmd([[packadd packer.nvim]])
-
 return require("packer").startup(function(use)
   -- Packer can manage itself
   use("wbthomason/packer.nvim")
@@ -82,11 +79,18 @@ return require("packer").startup(function(use)
   -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
   use({
     "VonHeikemen/lsp-zero.nvim",
-    branch = "v1.x",
+    branch = "v2.x",
     requires = {
       -- LSP Support
-      { "neovim/nvim-lspconfig" },          -- Required
-      { "williamboman/mason.nvim" },        -- Optional
+      { "neovim/nvim-lspconfig" }, -- Required
+      { "onsails/lspkind.nvim" },
+      {
+        -- Optional
+        "williamboman/mason.nvim",
+        run = function()
+          pcall(vim.cmd, "MasonUpdate")
+        end,
+      },
       { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
       -- Autocompletion
@@ -171,14 +175,14 @@ return require("packer").startup(function(use)
     "ggandor/leap.nvim",
     config = function()
       for _, _4_ in ipairs({
-        { "n", "s",  "<Plug>(leap-forward)" },
-        { "n", "S",  "<Plug>(leap-backward)" },
-        { "x", "s",  "<Plug>(leap-forward)" },
-        { "x", "S",  "<Plug>(leap-backward)" },
-        { "o", "z",  "<Plug>(leap-forward)" },
-        { "o", "Z",  "<Plug>(leap-backward)" },
-        { "o", "x",  "<Plug>(leap-forward-x)" },
-        { "o", "X",  "<Plug>(leap-backward-x)" },
+        { "n", "s", "<Plug>(leap-forward)" },
+        { "n", "S", "<Plug>(leap-backward)" },
+        { "x", "s", "<Plug>(leap-forward)" },
+        { "x", "S", "<Plug>(leap-backward)" },
+        { "o", "z", "<Plug>(leap-forward)" },
+        { "o", "Z", "<Plug>(leap-backward)" },
+        { "o", "x", "<Plug>(leap-forward-x)" },
+        { "o", "X", "<Plug>(leap-backward-x)" },
         -- { "n", "gs", "<Plug>(leap-cross-window)" },
         -- { "x", "gs", "<Plug>(leap-cross-window)" },
         -- { "o", "gs", "<Plug>(leap-cross-window)" },
@@ -206,7 +210,6 @@ return require("packer").startup(function(use)
   use("nvim-tree/nvim-web-devicons")
   use({
     "utilyre/barbecue.nvim",
-    tag = "fix/E36",
     requires = {
       "SmiteshP/nvim-navic",
       "nvim-tree/nvim-web-devicons", -- optional dependency
@@ -312,4 +315,8 @@ return require("packer").startup(function(use)
       })
     end,
   })
+
+  use("nanozuki/tabby.nvim")
+  use("kdheepak/lazygit.nvim")
+  use("dmmulroy/tsc.nvim")
 end)
