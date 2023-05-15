@@ -76,6 +76,27 @@ local M = {
   commands = {
     -- easily create user commands
     {
+      ":GoAway",
+      function()
+        require("noice").cmd("dismiss")
+        vim.cmd(":noh")
+      end,
+      description = "Go away",
+    },
+    {
+      ":SaveWithoutFormatting",
+      ":noa w",
+      description = "Save without formatting",
+    },
+    {
+      ":RFinder",
+      function()
+        local path = vim.api.nvim_buf_get_name(0)
+        os.execute("open -R " .. path)
+      end,
+      description = "Reveal in Finder",
+    },
+    {
       ":MyRepos",
       function()
         require("telescope").extensions.repo.list({})
