@@ -1,4 +1,7 @@
 return require("packer").startup(function(use)
+  local isVsCode = vim.g.vscode
+  -- print(not isVsCode)
+
   -- Packer can manage itself
   use("wbthomason/packer.nvim")
 
@@ -15,6 +18,14 @@ return require("packer").startup(function(use)
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   })
 
+  use({
+    "aaronhallaert/advanced-git-search.nvim",
+    requires = {
+      "nvim-telescope/telescope.nvim",
+      -- to show diff splits and open commits in browser
+      "tpope/vim-fugitive",
+    },
+  })
   use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
   use({
     "windwp/nvim-autopairs",
@@ -205,6 +216,7 @@ return require("packer").startup(function(use)
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
+  use("arkav/lualine-lsp-progress")
   use("rafamadriz/friendly-snippets")
 
   use("nvim-tree/nvim-web-devicons")
@@ -246,10 +258,10 @@ return require("packer").startup(function(use)
     end,
   })
   use("simrat39/symbols-outline.nvim")
-  use({
-    "kosayoda/nvim-lightbulb",
-    requires = "antoinemadec/FixCursorHold.nvim",
-  })
+  -- use({
+  --   "kosayoda/nvim-lightbulb",
+  --   requires = "antoinemadec/FixCursorHold.nvim",
+  -- })
   use("tenxsoydev/karen-yank.nvim")
   use({
     "SmiteshP/nvim-navbuddy",
@@ -289,13 +301,13 @@ return require("packer").startup(function(use)
     config = function()
       require("mini.surround").setup({
         mappings = {
-          add = "gsa",  -- Add surrounding in Normal and Visual modes
-          delete = "gsd", -- Delete surrounding
-          find = "gsf", -- Find surrounding (to the right)
+          add = "gsa",       -- Add surrounding in Normal and Visual modes
+          delete = "gsd",    -- Delete surrounding
+          find = "gsf",      -- Find surrounding (to the right)
           find_left = "gsF", -- Find surrounding (to the left)
           highlight = "gsh", -- Highlight surrounding
-          replace = "gsr", -- Replace surrounding
-          -- update_n_lines = "sn", -- Update `n_lines`
+          replace = "gsr",   -- Replace surrounding
+          update_n_lines = "gsn", -- Update `n_lines`
           -- suffix_last = "l", -- Suffix to search with "prev" method
           -- suffix_next = "n", -- Suffix to search with "next" method
         },
@@ -307,7 +319,7 @@ return require("packer").startup(function(use)
     "folke/which-key.nvim",
     config = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 300
+      vim.o.timeoutlen = 1500
       require("which-key").setup({
         -- your configuration comes here
         -- or leave it empty to use the default settings

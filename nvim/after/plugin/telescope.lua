@@ -40,6 +40,18 @@ telescope.setup({
       case_mode = "smart_case",    -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
+    advanced_git_search = {
+      -- Fugitive or diffview
+      diff_plugin = "fugitive",
+      -- Customize git in previewer
+      -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
+      git_flags = {},
+      -- Customize git diff in previewer
+      -- e.g. flags such as { "--raw" }
+      git_diff_flags = {},
+      -- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
+      show_builtin_git_pickers = false,
+    },
     --   frecency = {
     --     db_root = "/Users/alvest/workspace/.telescopedb",
     --     show_scores = true,
@@ -60,7 +72,8 @@ telescope.load_extension("recent_files")
 telescope.load_extension("persisted")
 telescope.load_extension("repo")
 telescope.load_extension("fzf")
-telescope.load_extension "file_browser"
+telescope.load_extension("file_browser")
+telescope.load_extension("advanced_git_search")
 
 vim.api.nvim_set_keymap(
   "n",
