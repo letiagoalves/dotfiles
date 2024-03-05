@@ -1,7 +1,0 @@
--- require("nvim-lightbulb").setup({
---   autocmd = { enabled = true },
---   ignore = { "null-ls" },
---   float = {
---     text = "X",
---   },
--- })

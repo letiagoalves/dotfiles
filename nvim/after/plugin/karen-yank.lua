@@ -1,1 +1,0 @@
-require("karen-yank").setup()
