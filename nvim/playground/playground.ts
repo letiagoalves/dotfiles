@@ -1,6 +1,7 @@
 // testing config
 console.log("custom snippets working");
 console.log("sadasd");
+console.log();
 
 // console.log("hello world");
 // console.log("asd");
@@ -34,6 +35,15 @@ function helloWorld(params: number) {
 function helloWord(params: number) {
 
 }
+
+function hello(params: type) {
+
+}
+
+function() {
+  console.log();
+}
+
 
 
 helloWorld(3);

@@ -1,3 +1,3 @@
 return {
-  "nanozuki/tabby.nvim"
+  "nanozuki/tabby.nvim",
 }
