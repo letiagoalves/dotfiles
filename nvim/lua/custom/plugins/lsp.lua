@@ -81,11 +81,7 @@ return {
 
           -- Fuzzy find all the symbols in your current workspace
           --  Similar to document symbols, except searches over your whole project.
-          map(
-            "<leader>ws",
-            require("telescope.builtin").lsp_dynamic_workspace_symbols,
-            "[W]orkspace [S]ymbols"
-          )
+          map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
           -- Rename the variable under your cursor
           --  Most Language Servers support renaming across files, etc.
@@ -151,10 +147,10 @@ return {
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {
-          capabilities = capabilities
+          capabilities = capabilities,
         },
         html = {
-          capabilities = capabilities
+          capabilities = capabilities,
         },
         lua_ls = {
           -- cmd = {...},
@@ -258,7 +254,7 @@ return {
       cmp.setup({
         snippet = {
           expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
           end,
         },
         completion = { completeopt = "menu,menuone,noinsert" },
@@ -309,5 +305,5 @@ return {
         },
       })
     end,
-  }
+  },
 }
