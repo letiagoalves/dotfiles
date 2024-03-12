@@ -137,7 +137,7 @@ local telescope = { -- Fuzzy Finder (files, lsp, etc)
     -- See `:help telescope.builtin`
     local builtin = require("telescope.builtin")
 
-    vim.keymap.set("n", "<leader>pp", builtin.git_files, {})
+    vim.keymap.set("n", "<leader>pp", require("search").open, {})
     vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
     vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
     vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
@@ -146,7 +146,6 @@ local telescope = { -- Fuzzy Finder (files, lsp, etc)
     -- vim.keymap.set("n", "<leader>ps", builtin.grep_string, { desc = "[S]earch current [W]ord" })
     vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = "[S]earch by [G]rep" })
     vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-    vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
     vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set(
       "n",
@@ -183,4 +182,37 @@ local telescope = { -- Fuzzy Finder (files, lsp, etc)
 return {
   { "cljoly/telescope-repo.nvim" },
   telescope,
+  {
+    "FabianWirth/search.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      local builtin = require("telescope.builtin")
+      require("search").setup({
+        mappings = { -- optional: configure the mappings for switching tabs (will be set in normal and insert mode(!))
+          next = "<Tab>",
+          prev = "<S-Tab>",
+        },
+        tabs = {
+          {
+            "Files",
+            function(opts)
+              opts = opts or {}
+              if vim.fn.isdirectory(".git") == 1 then
+                builtin.git_files(opts)
+              else
+                builtin.find_files(opts)
+              end
+            end,
+          },
+          {
+            "Live Grep",
+            function(opts)
+              opts = opts or {}
+              builtin.live_grep(opts)
+            end,
+          },
+        },
+      })
+    end,
+  },
 }
