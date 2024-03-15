@@ -74,12 +74,6 @@ vim.g.maplocalleader = " "
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, for help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
-
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
 
@@ -261,18 +255,30 @@ require("lazy").setup({
       --  - ci'  - [C]hange [I]nside [']quote
       require("mini.ai").setup({ n_lines = 500 })
 
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
-      require("mini.surround").setup()
-
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
       local statusline = require("mini.statusline")
       statusline.setup()
+
+      -- Add/delete/replace surroundings (brackets, quotes, etc.)
+      require("mini.surround").setup({
+        mappings = {
+          add = "as", -- Add surrounding in Normal and Visual modes
+          delete = "ds", -- Delete surrounding
+          find = "", -- Find surrounding (to the right)
+          find_left = "", -- Find surrounding (to the left)
+          highlight = "", -- Highlight surrounding
+          replace = "rs", -- Replace surrounding
+          update_n_lines = "", -- Update `n_lines`
+
+          suffix_last = "", -- Suffix to search with "prev" method
+          suffix_next = "", -- Suffix to search with "next" method
+        },
+
+        -- Number of lines within which surrounding is searched
+        n_lines = 5,
+      })
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
