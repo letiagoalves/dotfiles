@@ -40,10 +40,9 @@ function hello(params: type) {
 
 }
 
-function() {
+function helloFriend() {
+  console.log();
   console.log();
 }
 
-
-
-helloWorld(3);
+helloWorld(40);
