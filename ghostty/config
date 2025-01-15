@@ -1,2 +1,8 @@
-command = /opt/homebrew/bin/fish
-font-size = 26
+# add this to "machine-specific/config" with absolute path to fish
+# command = /Users/$USER/homebrew/bin/fish --login --interactive
+config-file = machine-specific/config
+
+window-inherit-font-size = false
+font-size = 18
+theme = catppuccin-mocha
+# cursor-color = red
