@@ -6,12 +6,19 @@ if status is-interactive
     # testing startup time
     # fish --profile-startup /tmp/fish.profile -i -c exit
 
-    fish_add_path "$HOME/homebrew/bin"
     fish_add_path "$HOME/workspace/github/git-fuzzy/bin"
     fish_add_path "$HOME/.cargo/bin"
     fish_add_path "$HOME/.local/share/bob/nvim-bin"
+    fish_add_path "$HOME/.local/share/bob/nvim-bin"
+    fish_add_path "/opt/homebrew/opt/libpq/bin"
+    fish_add_path "/opt/homebrew/opt/openjdk/bin/"
 
     starship init fish | source
     zoxide init fish | source
-end
 
+    source ~/.asdf/asdf.fish
+    ## run this to have completions
+    ## mkdir -p ~/.config/fish/completions; and ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+
+    . ~/.asdf/plugins/java/set-java-home.fish
+end
