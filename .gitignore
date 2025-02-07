@@ -6,8 +6,10 @@ fish/functions
 fish/themes
 fish/fish_variables
 !fish/conf.d/alias.fish
+!fish/conf.d/asdf.fish
 !fish/conf.d/brew.fish
 !fish/conf.d/bun.fish
 !fish/conf.d/fnm.fish
 !fish/conf.d/zellij.fish
 !fish/fish_plugins
+zellij/plugins/zjstatus.wasm
