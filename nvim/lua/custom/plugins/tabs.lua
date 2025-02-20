@@ -1,3 +1,0 @@
-return {
-  "nanozuki/tabby.nvim",
-}
