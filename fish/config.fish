@@ -7,11 +7,16 @@ if status is-interactive
     # fish --profile-startup /tmp/fish.profile -i -c exit
 
     fish_add_path "$HOME/workspace/github/git-fuzzy/bin"
+    fish_add_path "$HOME/workspace/google-cloud-sdk/bin"
     fish_add_path "$HOME/.cargo/bin"
     fish_add_path "$HOME/.local/share/bob/nvim-bin"
     fish_add_path "$HOME/.local/share/bob/nvim-bin"
+    fish_add_path "$HOME/.local/share/bob/nvim-bin"
+    fish_add_path "$HOME/.local/bin"
     fish_add_path "/opt/homebrew/opt/libpq/bin"
     fish_add_path "/opt/homebrew/opt/openjdk/bin/"
+    set -gx PNPM_HOME "$HOME/Library/pnpm"
+    fish_add_path "$PNPM_HOME"
 
     starship init fish | source
     zoxide init fish | source

@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "node /Users/tiagoalves/workspace/github.com/dotfiles/agent-guardrails/firestore-guard.js --tool=cursor --event=shell",
+        "failClosed": true
+      }
+    ],
+    "beforeMCPExecution": [
+      {
+        "command": "node /Users/tiagoalves/workspace/github.com/dotfiles/agent-guardrails/firestore-guard.js --tool=cursor --event=mcp",
+        "failClosed": true
+      }
+    ],
+    "preToolUse": [
+      {
+        "matcher": "Write",
+        "command": "node /Users/tiagoalves/workspace/github.com/dotfiles/agent-guardrails/firestore-guard.js --tool=cursor --event=write",
+        "failClosed": true
+      }
+    ]
+  }
+}

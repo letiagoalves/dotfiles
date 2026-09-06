@@ -4,5 +4,5 @@ config-file = machine-specific/config
 
 window-inherit-font-size = false
 font-size = 18
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 # cursor-color = red

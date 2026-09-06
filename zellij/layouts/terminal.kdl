@@ -1,12 +1,8 @@
 layout {
-    pane split_direction="vertical" {
-        pane size="60%"
-        pane size="40%" split_direction="horizontal" {
-            pane
+    default_tab_template {
+        pane size=2 borderless=true {
+            plugin location="zjstatus"
         }
-    }
-    pane size=1 borderless=true {
-        plugin location="zjstatus"
-        // plugin location="zellij:compact-bar"
+        children
     }
 }

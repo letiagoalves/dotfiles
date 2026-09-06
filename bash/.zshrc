@@ -4,17 +4,21 @@ source "/Users/tiagoalves/.zshrc_custom"
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # pnpm
 export PNPM_HOME="/Users/tiagoalves/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval $(/opt/homebrew/bin/brew shellenv)
+
+# fnm - the only Node version manager on this machine (nvm was removed).
+# Mirrors fish/conf.d/fnm.fish. Must come after brew shellenv: the
+# --use-on-cd hook calls `fnm` unqualified, so it needs /opt/homebrew/bin.
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 eval "$(rbenv init - zsh)"
 eval "$(pyenv init --path)"
@@ -30,3 +34,28 @@ compinit -u
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+# Added by Antigravity
+export PATH="/Users/tiagoalves/.antigravity/antigravity/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tiagoalves/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tiagoalves/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/tiagoalves/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tiagoalves/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Added by Antigravity IDE
+export PATH="/Users/tiagoalves/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/tiagoalves/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/tiagoalves/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# bun completions
+[ -s "/Users/tiagoalves/.bun/_bun" ] && source "/Users/tiagoalves/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

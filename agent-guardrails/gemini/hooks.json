@@ -1,0 +1,33 @@
+{
+  "firestore-guardrail": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "command": "node /Users/tiagoalves/workspace/github.com/dotfiles/agent-guardrails/firestore-guard.js --tool=antigravity --event=shell",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "write_to_file|replace_file_content",
+        "hooks": [
+          {
+            "command": "node /Users/tiagoalves/workspace/github.com/dotfiles/agent-guardrails/firestore-guard.js --tool=antigravity --event=write",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "mcp_.*",
+        "hooks": [
+          {
+            "command": "node /Users/tiagoalves/workspace/github.com/dotfiles/agent-guardrails/firestore-guard.js --tool=antigravity --event=mcp",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
