@@ -105,9 +105,18 @@ const FIRESTORE_HINT = /firestore|firebase-admin|firebase\.firestore|admin\.fire
 const REST_HOST = /firestore\.googleapis\.com/i;
 const WRITE_METHOD = /-X\s*(POST|PATCH|DELETE)\b|--request[=\s]+(POST|PATCH|DELETE)\b/i;
 
+// Firestore's REST API exposes several read-only operations as POST requests
+// (RPC-style action names, not resource-shaped), so a raw HTTP-method check
+// alone misclassifies them as writes. Name them explicitly; anything not
+// named here still falls back to the method-based check in classify().
+const REST_READ_ONLY_ENDPOINT = /:(runQuery|runAggregationQuery|batchGet|partitionQuery|listDocuments|listCollectionIds)\b/i;
+const REST_WRITE_ENDPOINT = /:(commit|write|batchWrite)\b/i;
+
 function classify(text) {
   if (!text) return null;
   if (REST_HOST.test(text)) {
+    if (REST_READ_ONLY_ENDPOINT.test(text)) return 'read';
+    if (REST_WRITE_ENDPOINT.test(text)) return 'write';
     return WRITE_METHOD.test(text) ? 'write' : 'read';
   }
   if (EXPLICIT_WRITE.some((re) => re.test(text))) return 'write';

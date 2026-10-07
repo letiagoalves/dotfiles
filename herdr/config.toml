@@ -1,0 +1,16 @@
+onboarding = false
+
+[terminal]
+default_shell = "fish"
+
+[theme]
+name = "catppuccin"
+
+[theme.custom]
+sidebar_bg = "#11111b"
+
+[ui]
+pane_borders = "always"
+
+[ui.toast]
+delivery = "system"
